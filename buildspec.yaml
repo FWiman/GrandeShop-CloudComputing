@@ -6,8 +6,8 @@ phases:
       java: corretto21
   build:
     commands:
-      - echo Build completed on `date`
-      - mvn package -Dmaven.test.skip=true
+      - echo Build started on `date`
+      - mvn clean package -DskipTests
 
 post_build:
   commands:
