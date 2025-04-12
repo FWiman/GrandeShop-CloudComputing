@@ -8,6 +8,9 @@ phases:
     commands:
       - echo Build started on `date`
       - mvn clean package -DskipTests
+      - mkdir -p build
+      - cp target/*.jar build/app.jar
+      - cd build && zip ../app.zip app.jar
 
 post_build:
   commands:
@@ -15,5 +18,5 @@ post_build:
 
 artifacts:
   files:
-    - target/*.jar
+    - app.zip
   discard-paths: yes
