@@ -11,9 +11,7 @@ phases:
       - mvn clean package -DskipTests
       - mkdir -p build
       - cp target/*.jar build/app.jar
-      - cp Procfile build/
-      - cd build && zip ../app.zip app.jar Procfile
-
+      - cd build && zip ../app.zip app.jar
 
 post_build:
   commands:
