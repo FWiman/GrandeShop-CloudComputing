@@ -19,5 +19,6 @@ post_build:
 
 artifacts:
   files:
+    - target/*.jar
     - app.zip
   discard-paths: yes
