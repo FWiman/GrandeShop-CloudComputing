@@ -1,24 +1,16 @@
 version: 0.2
-
 phases:
   install:
     runtime-versions:
       java: corretto21
-
   build:
     commands:
-      - echo Build started on `date`
-      - mvn clean package -DskipTests
-      - mkdir -p build
-      - cp target/*.jar build/app.jar
-      - cd build && zip ../app.zip app.jar
-
-post_build:
-  commands:
-    - echo Build completed on `date`
-
+      - echo Build completed on `date`
+      - mvn package -Dmaven-test-skip
+  post_build:
+    commands:
+      - echo Build completed on `date`
 artifacts:
   files:
     - target/*.jar
-    - app.zip
   discard-paths: yes
