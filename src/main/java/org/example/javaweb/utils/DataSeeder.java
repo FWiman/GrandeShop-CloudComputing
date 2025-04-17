@@ -11,6 +11,7 @@ import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -48,7 +49,7 @@ public class DataSeeder {
         URL resource = getClass().getClassLoader().getResource("static/images/dogs");
         Path dir = Paths.get(resource.toURI());
 
-        Set<String> allFiles =  Stream.of(new File(String.valueOf(dir)).listFiles())
+        Set<String> allFiles =  Stream.of(Objects.requireNonNull(new File(String.valueOf(dir)).listFiles()))
                 .filter(file -> !file.isDirectory())
                 .map(File::getName)
                 .collect(Collectors.toSet());
