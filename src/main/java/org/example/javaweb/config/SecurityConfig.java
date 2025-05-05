@@ -16,7 +16,7 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/admin/**").authenticated()
+                        .requestMatchers("/admin").authenticated()
                         .anyRequest().permitAll()
                 )
                 .oauth2Login(Customizer.withDefaults())
