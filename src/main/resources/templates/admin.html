@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Page</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+<h1>Admin Page</h1>
+
+<div th:if="${username != null}">
+    <p>Welcome, <span th:text="${username}"></span>!</p>
+    <a href="/logout">Logout</a>
+</div>
+
+<div th:unless="${username != null}">
+    <p>You are not logged in.</p>
+    <a href="/oauth2/authorization/github">Login with GitHub</a>
+</div>
+</body>
+</html>
