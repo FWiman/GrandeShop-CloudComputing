@@ -7,6 +7,9 @@ import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 @Controller
 public class HomeController {
@@ -38,11 +41,16 @@ public class HomeController {
         return "list";
     }
 
-    @GetMapping(path = "/admin")
-    String admin(Model model, @AuthenticationPrincipal OAuth2User principal) {
-        if (principal != null) {
-            model.addAttribute("username", principal.getAttribute("login"));
-        }
-        return "admin";
+    @RequestMapping("/admin")
+    public Principal admin(Principal admin) {
+        return admin;
     }
+
+//    @GetMapping(path = "/admin")
+//    String admin(Model model, @AuthenticationPrincipal OAuth2User principal) {
+//        if (principal != null) {
+//            model.addAttribute("username", principal.getAttribute("login"));
+//        }
+//        return "admin";
+//    }
 }

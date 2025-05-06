@@ -13,18 +13,27 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
-                        .requestMatchers("/admin").authenticated()
-                        .anyRequest().permitAll()
-                )
-                .oauth2Login(Customizer.withDefaults())
-                .logout(logout -> logout
-                        .logoutSuccessUrl("/")
-                        .permitAll()
-                );
 
-        return http.build();
+        return http
+                .authorizeHttpRequests(registry ->{
+                    registry.requestMatchers("/").permitAll();
+                    registry.anyRequest().authenticated();
+                })
+                .oauth2Login(Customizer.withDefaults())
+                .formLogin(Customizer.withDefaults())
+                .build();
+//        http
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/", "/css/**", "/js/**", "/images/**").permitAll()
+//                        .requestMatchers("/admin").authenticated()
+//                        .anyRequest().permitAll()
+//                )
+//                .oauth2Login(Customizer.withDefaults())
+//                .logout(logout -> logout
+//                        .logoutSuccessUrl("/")
+//                        .permitAll()
+//                );
+//
+//        return http.build();
     }
 }
